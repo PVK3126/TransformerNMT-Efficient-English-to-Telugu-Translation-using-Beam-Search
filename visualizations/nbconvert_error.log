@@ -1,0 +1,92 @@
+[NbConvertApp] Converting notebook visualizations_combined.ipynb to notebook
+[NbConvertApp] Executing notebook with kernel: python3
+Traceback (most recent call last):
+  File "/home/user35/nmt_bundle/venv/bin/jupyter-nbconvert", line 8, in <module>
+    sys.exit(main())
+  File "/home/user35/nmt_bundle/venv/lib64/python3.6/site-packages/jupyter_core/application.py", line 264, in launch_instance
+    return super(JupyterApp, cls).launch_instance(argv=argv, **kwargs)
+  File "/home/user35/nmt_bundle/venv/lib64/python3.6/site-packages/traitlets/config/application.py", line 664, in launch_instance
+    app.start()
+  File "/home/user35/nmt_bundle/venv/lib64/python3.6/site-packages/nbconvert/nbconvertapp.py", line 350, in start
+    self.convert_notebooks()
+  File "/home/user35/nmt_bundle/venv/lib64/python3.6/site-packages/nbconvert/nbconvertapp.py", line 524, in convert_notebooks
+    self.convert_single_notebook(notebook_filename)
+  File "/home/user35/nmt_bundle/venv/lib64/python3.6/site-packages/nbconvert/nbconvertapp.py", line 489, in convert_single_notebook
+    output, resources = self.export_single_notebook(notebook_filename, resources, input_buffer=input_buffer)
+  File "/home/user35/nmt_bundle/venv/lib64/python3.6/site-packages/nbconvert/nbconvertapp.py", line 418, in export_single_notebook
+    output, resources = self.exporter.from_filename(notebook_filename, resources=resources)
+  File "/home/user35/nmt_bundle/venv/lib64/python3.6/site-packages/nbconvert/exporters/exporter.py", line 181, in from_filename
+    return self.from_file(f, resources=resources, **kw)
+  File "/home/user35/nmt_bundle/venv/lib64/python3.6/site-packages/nbconvert/exporters/exporter.py", line 199, in from_file
+    return self.from_notebook_node(nbformat.read(file_stream, as_version=4), resources=resources, **kw)
+  File "/home/user35/nmt_bundle/venv/lib64/python3.6/site-packages/nbconvert/exporters/notebook.py", line 32, in from_notebook_node
+    nb_copy, resources = super().from_notebook_node(nb, resources, **kw)
+  File "/home/user35/nmt_bundle/venv/lib64/python3.6/site-packages/nbconvert/exporters/exporter.py", line 143, in from_notebook_node
+    nb_copy, resources = self._preprocess(nb_copy, resources)
+  File "/home/user35/nmt_bundle/venv/lib64/python3.6/site-packages/nbconvert/exporters/exporter.py", line 318, in _preprocess
+    nbc, resc = preprocessor(nbc, resc)
+  File "/home/user35/nmt_bundle/venv/lib64/python3.6/site-packages/nbconvert/preprocessors/base.py", line 47, in __call__
+    return self.preprocess(nb, resources)
+  File "/home/user35/nmt_bundle/venv/lib64/python3.6/site-packages/nbconvert/preprocessors/execute.py", line 79, in preprocess
+    self.execute()
+  File "/home/user35/nmt_bundle/venv/lib64/python3.6/site-packages/nbclient/util.py", line 84, in wrapped
+    return just_run(coro(*args, **kwargs))
+  File "/home/user35/nmt_bundle/venv/lib64/python3.6/site-packages/nbclient/util.py", line 62, in just_run
+    return loop.run_until_complete(coro)
+  File "/usr/lib64/python3.6/asyncio/base_events.py", line 484, in run_until_complete
+    return future.result()
+  File "/home/user35/nmt_bundle/venv/lib64/python3.6/site-packages/nbclient/client.py", line 560, in async_execute
+    cell, index, execution_count=self.code_cells_executed + 1
+  File "/home/user35/nmt_bundle/venv/lib64/python3.6/site-packages/nbconvert/preprocessors/execute.py", line 123, in async_execute_cell
+    cell, resources = self.preprocess_cell(cell, self.resources, cell_index)
+  File "/home/user35/nmt_bundle/venv/lib64/python3.6/site-packages/nbconvert/preprocessors/execute.py", line 146, in preprocess_cell
+    cell = run_sync(NotebookClient.async_execute_cell)(self, cell, index, store_history=self.store_history)
+  File "/home/user35/nmt_bundle/venv/lib64/python3.6/site-packages/nbclient/util.py", line 84, in wrapped
+    return just_run(coro(*args, **kwargs))
+  File "/home/user35/nmt_bundle/venv/lib64/python3.6/site-packages/nbclient/util.py", line 62, in just_run
+    return loop.run_until_complete(coro)
+  File "/home/user35/nmt_bundle/venv/lib64/python3.6/site-packages/nest_asyncio.py", line 98, in run_until_complete
+    return f.result()
+  File "/usr/lib64/python3.6/asyncio/tasks.py", line 180, in _step
+    result = coro.send(None)
+  File "/home/user35/nmt_bundle/venv/lib64/python3.6/site-packages/nbclient/client.py", line 854, in async_execute_cell
+    self._check_raise_for_error(cell, exec_reply)
+  File "/home/user35/nmt_bundle/venv/lib64/python3.6/site-packages/nbclient/client.py", line 756, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+import os
+os.environ['CUDA_VISIBLE_DEVICES'] = ''  # Force CPU
+
+import math, types, warnings
+from pathlib import Path
+
+import numpy as np
+import torch
+import torch.nn as nn
+import sentencepiece as spm
+import matplotlib.pyplot as plt
+import matplotlib.font_manager as fm
+
+warnings.filterwarnings('ignore')
+
+VOCAB_SIZE = 32000; MAX_SEQ_LEN = 128
+PAD_ID, BOS_ID, EOS_ID = 0, 2, 3
+DEVICE = torch.device('cpu')
+CACHE_DIR = Path('..') / 'cache'
+
+# Telugu font for matplotlib labels
+TELUGU_FONT = None
+if Path('/usr/share/fonts/lohit-telugu/Lohit-Telugu.ttf').exists():
+
+------------------
+
+[0;36m  File [0;32m"<ipython-input-1-086b3498a6a1>"[0;36m, line [0;32m23[0m
+[0;31m    if Path('/usr/share/fonts/lohit-telugu/Lohit-Telugu.ttf').exists():[0m
+[0m                                                                       ^[0m
+[0;31mSyntaxError[0m[0;31m:[0m unexpected EOF while parsing
+
+SyntaxError: unexpected EOF while parsing (<ipython-input-1-086b3498a6a1>, line 23)
+
+
+
